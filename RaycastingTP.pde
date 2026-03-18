@@ -57,7 +57,7 @@ void castRays() {
   for (int i = 0; i < NUM_RAYS; i++) {
     float angle = map(i, 0, NUM_RAYS, 0, TWO_PI);
     PVector dir = new PVector(cos(angle), sin(angle));
-    Ray ray = new Ray(source, dir);
+    Rayon ray = new Rayon(source, dir);
 
     PVector closest = null;
     float minDist = Float.MAX_VALUE;

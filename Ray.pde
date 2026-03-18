@@ -1,10 +1,10 @@
 // Classe Ray - représente un rayon
 
-class Ray {
+class Rayon {
   PVector origin;
   PVector dir;
 
-  Ray(PVector origin, PVector dir) {
+  Rayon(PVector origin, PVector dir) {
     this.origin = origin.copy();
     this.dir = dir.copy();
   }
