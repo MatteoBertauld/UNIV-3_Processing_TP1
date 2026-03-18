@@ -8,6 +8,17 @@ class Rayon {
     this.origin = origin.copy();
     this.dir = dir.copy();
   }
+  
+  // Vérifie si le rayon touche un ennemi (cercle)
+  PVector castEnnemi(Ennemi e) {
+    PVector toEnemy = PVector.sub(e.pos, origin);
+    float t = PVector.dot(toEnemy, dir);
+    if (t < 0) return null;
+    PVector closest = PVector.add(origin, PVector.mult(dir, t));
+    float d = PVector.dist(closest, e.pos);
+    if (d <= e.radius) return closest;
+    return null;
+  }
 
   // Calcule l'intersection du rayon avec un mur (algorithme segment-segment)
   // Retourne le point d'intersection ou null s'il n'y en a pas
