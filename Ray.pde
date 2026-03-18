@@ -1,12 +1,23 @@
 // Classe Ray - représente un rayon
 
-class Ray {
+class Rayon {
   PVector origin;
   PVector dir;
 
-  Ray(PVector origin, PVector dir) {
+  Rayon(PVector origin, PVector dir) {
     this.origin = origin.copy();
     this.dir = dir.copy();
+  }
+  
+  // Vérifie si le rayon touche un ennemi (cercle)
+  PVector castEnnemi(Ennemi e) {
+    PVector toEnemy = PVector.sub(e.pos, origin);
+    float t = PVector.dot(toEnemy, dir);
+    if (t < 0) return null;
+    PVector closest = PVector.add(origin, PVector.mult(dir, t));
+    float d = PVector.dist(closest, e.pos);
+    if (d <= e.radius) return closest;
+    return null;
   }
 
   // Calcule l'intersection du rayon avec un mur (algorithme segment-segment)
