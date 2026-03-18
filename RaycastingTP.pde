@@ -4,7 +4,7 @@
 import java.util.ArrayList;
 
 int NUM_WALLS = 8;
-int NUM_RAYS = 30;
+int NUM_RAYS = 10;
 int SPAWN_INTERVAL = 1;
 
 Wall[] walls;
@@ -27,13 +27,11 @@ void draw() {
 
   source.set(mouseX, mouseY);
 
-  // Spawn automatique toutes les X secondes
   if (millis() - lastSpawn > SPAWN_INTERVAL * 1000) {
     spawnEnnemi();
     lastSpawn = millis();
   }
 
-  // Mettre à jour et dessiner les ennemis
   for (Ennemi e : ennemis) {
     e.update();
     e.show();
@@ -47,7 +45,7 @@ void draw() {
   // Lancer les rayons
   castRays();
 
-  // Dessiner la source (joueur)
+  // Dessiner la source
   fill(255, 220, 50);
   noStroke();
   ellipse(source.x, source.y, 14, 14);
@@ -64,7 +62,7 @@ void draw() {
 }
 
 void spawnEnnemi() {
-  // Spawn sur un bord aléatoire pour qu'il arrive de l'extérieur
+  // Spawn sur un bord aléatoire
   float x, y;
   int bord = int(random(4));
   if (bord == 0)      { x = random(width); y = 0; }
